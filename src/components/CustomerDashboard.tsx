@@ -355,7 +355,7 @@ export default function CustomerDashboard({
                   <h3 className="font-display text-lg font-black tracking-tight text-brand-600">SK LAUNDRY SERVICES</h3>
                   <p className="text-[10px] text-gray-500 font-semibold uppercase mt-0.5">HYGIENE FABRIC CLINIC</p>
                   <p className="text-[9px] text-gray-400 leading-relaxed mt-1 max-w-xs">
-                    Geetha Nagar, Beside St. Martin School, Kandri Gutta, Balanagar, Hyderabad, Telangana – 500042
+                    Geetha Nagar, 8-4-300, Beside St. Martin School, Kandri Gutta, Balanagar, Hyderabad, Telangana – 500042
                   </p>
                   <p className="text-[9px] font-mono text-gray-400 mt-1">Reg No: SEA/MED/ALO/QB/1174332/2025</p>
                 </div>

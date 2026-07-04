@@ -522,7 +522,7 @@ export default function Home({ setActivePage, settings }: HomeProps) {
                     <div>
                       <h3 className="font-display text-lg font-bold">SK Laundry Services Store</h3>
                       <p className="text-xs text-slate-300 mt-1 leading-relaxed">
-                        Geetha Nagar, Beside St. Martin School, Kandri Gutta, Balanagar.
+                        Geetha Nagar, 8-4-300, Beside St. Martin School, Kandri Gutta, Balanagar.
                       </p>
                     </div>
                     <a 
