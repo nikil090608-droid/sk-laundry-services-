@@ -1,7 +1,6 @@
 import express from "express";
 import path from "path";
 import fs from "fs";
-import { createServer as createViteServer } from "vite";
 import { LaundryItem, Order, User, AppSettings, OrderStatus, PaymentStatus } from "./src/types";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -186,6 +185,8 @@ let database: {
   ownerPassword: "Kalpana@3375"
 };
 
+let startupError: any = null;
+
 // Load or initialize DB on startup
 try {
   if (!fs.existsSync(DB_DIR)) {
@@ -210,6 +211,7 @@ try {
     console.log("Database file created with default records.");
   }
 } catch (e) {
+  startupError = e instanceof Error ? { message: e.message, stack: e.stack } : String(e);
   console.error("Error setting up database file, using in-memory fallbacks:", e);
 }
 
@@ -236,6 +238,33 @@ function logAudit(action: string, user: string) {
 }
 
 // ---------------- API ENDPOINTS ----------------
+
+app.get("/api/health", (req, res) => {
+  let files: string[] = [];
+  try {
+    files = fs.readdirSync(process.cwd());
+  } catch (err) {
+    files = [String(err)];
+  }
+  let dataFiles: string[] = [];
+  try {
+    dataFiles = fs.readdirSync(DB_DIR);
+  } catch (err) {
+    dataFiles = [String(err)];
+  }
+  res.json({
+    status: "ok",
+    cwd: process.cwd(),
+    dbDir: DB_DIR,
+    dbFile: DB_FILE,
+    dirExists: fs.existsSync(DB_DIR),
+    fileExists: fs.existsSync(DB_FILE),
+    startupError,
+    files,
+    dataFiles,
+    servicesCount: database?.services?.length || 0
+  });
+});
 
 // Services Endpoints
 app.get("/api/services", (req, res) => {
@@ -919,6 +948,7 @@ app.get("/api/reports", (req, res) => {
 async function startServer() {
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
+    const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa"
