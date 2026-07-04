@@ -1,0 +1,1372 @@
+{
+  "services": [
+    {
+      "id": "men_0_steam_iron",
+      "name": "Shirt",
+      "price": 15,
+      "category": "MEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "men_0_wash_fold",
+      "name": "Shirt",
+      "price": 30,
+      "category": "MEN",
+      "serviceType": "Wash Fold"
+    },
+    {
+      "id": "men_0_wash_iron",
+      "name": "Shirt",
+      "price": 40,
+      "category": "MEN",
+      "serviceType": "Wash Iron"
+    },
+    {
+      "id": "men_0_wash___iron___starch",
+      "name": "Shirt",
+      "price": 55,
+      "category": "MEN",
+      "serviceType": "Wash & Iron + Starch"
+    },
+    {
+      "id": "men_0_dry_cleaning",
+      "name": "Shirt",
+      "price": 90,
+      "category": "MEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "men_1_steam_iron",
+      "name": "T-Shirt",
+      "price": 15,
+      "category": "MEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "men_1_wash_fold",
+      "name": "T-Shirt",
+      "price": 25,
+      "category": "MEN",
+      "serviceType": "Wash Fold"
+    },
+    {
+      "id": "men_1_wash_iron",
+      "name": "T-Shirt",
+      "price": 35,
+      "category": "MEN",
+      "serviceType": "Wash Iron"
+    },
+    {
+      "id": "men_1_wash___iron___starch",
+      "name": "T-Shirt",
+      "price": 45,
+      "category": "MEN",
+      "serviceType": "Wash & Iron + Starch"
+    },
+    {
+      "id": "men_1_dry_cleaning",
+      "name": "T-Shirt",
+      "price": 80,
+      "category": "MEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "men_2_steam_iron",
+      "name": "Trouser/Pant",
+      "price": 15,
+      "category": "MEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "men_2_wash_fold",
+      "name": "Trouser/Pant",
+      "price": 35,
+      "category": "MEN",
+      "serviceType": "Wash Fold"
+    },
+    {
+      "id": "men_2_wash_iron",
+      "name": "Trouser/Pant",
+      "price": 50,
+      "category": "MEN",
+      "serviceType": "Wash Iron"
+    },
+    {
+      "id": "men_2_wash___iron___starch",
+      "name": "Trouser/Pant",
+      "price": 65,
+      "category": "MEN",
+      "serviceType": "Wash & Iron + Starch"
+    },
+    {
+      "id": "men_2_dry_cleaning",
+      "name": "Trouser/Pant",
+      "price": 100,
+      "category": "MEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "men_3_steam_iron",
+      "name": "Kurta",
+      "price": 20,
+      "category": "MEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "men_3_wash_fold",
+      "name": "Kurta",
+      "price": 35,
+      "category": "MEN",
+      "serviceType": "Wash Fold"
+    },
+    {
+      "id": "men_3_wash_iron",
+      "name": "Kurta",
+      "price": 50,
+      "category": "MEN",
+      "serviceType": "Wash Iron"
+    },
+    {
+      "id": "men_3_wash___iron___starch",
+      "name": "Kurta",
+      "price": 65,
+      "category": "MEN",
+      "serviceType": "Wash & Iron + Starch"
+    },
+    {
+      "id": "men_3_dry_cleaning",
+      "name": "Kurta",
+      "price": 110,
+      "category": "MEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "men_4_steam_iron",
+      "name": "Pajama",
+      "price": 15,
+      "category": "MEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "men_4_wash_fold",
+      "name": "Pajama",
+      "price": 30,
+      "category": "MEN",
+      "serviceType": "Wash Fold"
+    },
+    {
+      "id": "men_4_wash_iron",
+      "name": "Pajama",
+      "price": 40,
+      "category": "MEN",
+      "serviceType": "Wash Iron"
+    },
+    {
+      "id": "men_4_wash___iron___starch",
+      "name": "Pajama",
+      "price": 55,
+      "category": "MEN",
+      "serviceType": "Wash & Iron + Starch"
+    },
+    {
+      "id": "men_4_dry_cleaning",
+      "name": "Pajama",
+      "price": 80,
+      "category": "MEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "men_5_steam_iron",
+      "name": "Kurta Pajama",
+      "price": 30,
+      "category": "MEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "men_5_wash_fold",
+      "name": "Kurta Pajama",
+      "price": 60,
+      "category": "MEN",
+      "serviceType": "Wash Fold"
+    },
+    {
+      "id": "men_5_wash_iron",
+      "name": "Kurta Pajama",
+      "price": 80,
+      "category": "MEN",
+      "serviceType": "Wash Iron"
+    },
+    {
+      "id": "men_5_wash___iron___starch",
+      "name": "Kurta Pajama",
+      "price": 100,
+      "category": "MEN",
+      "serviceType": "Wash & Iron + Starch"
+    },
+    {
+      "id": "men_5_dry_cleaning",
+      "name": "Kurta Pajama",
+      "price": 180,
+      "category": "MEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "men_6_steam_iron",
+      "name": "Dhoti",
+      "price": 20,
+      "category": "MEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "men_6_wash_fold",
+      "name": "Dhoti",
+      "price": 40,
+      "category": "MEN",
+      "serviceType": "Wash Fold"
+    },
+    {
+      "id": "men_6_wash_iron",
+      "name": "Dhoti",
+      "price": 60,
+      "category": "MEN",
+      "serviceType": "Wash Iron"
+    },
+    {
+      "id": "men_6_wash___iron___starch",
+      "name": "Dhoti",
+      "price": 80,
+      "category": "MEN",
+      "serviceType": "Wash & Iron + Starch"
+    },
+    {
+      "id": "men_6_dry_cleaning",
+      "name": "Dhoti",
+      "price": 120,
+      "category": "MEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "men_7_steam_iron",
+      "name": "Waist Coat",
+      "price": 30,
+      "category": "MEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "men_7_wash_fold",
+      "name": "Waist Coat",
+      "price": 60,
+      "category": "MEN",
+      "serviceType": "Wash Fold"
+    },
+    {
+      "id": "men_7_wash_iron",
+      "name": "Waist Coat",
+      "price": 100,
+      "category": "MEN",
+      "serviceType": "Wash Iron"
+    },
+    {
+      "id": "men_7_wash___iron___starch",
+      "name": "Waist Coat",
+      "price": 120,
+      "category": "MEN",
+      "serviceType": "Wash & Iron + Starch"
+    },
+    {
+      "id": "men_7_dry_cleaning",
+      "name": "Waist Coat",
+      "price": 150,
+      "category": "MEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "men_8_steam_iron",
+      "name": "Dhoti (Set-3)",
+      "price": 40,
+      "category": "MEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "men_8_wash_fold",
+      "name": "Dhoti (Set-3)",
+      "price": 80,
+      "category": "MEN",
+      "serviceType": "Wash Fold"
+    },
+    {
+      "id": "men_8_wash_iron",
+      "name": "Dhoti (Set-3)",
+      "price": 120,
+      "category": "MEN",
+      "serviceType": "Wash Iron"
+    },
+    {
+      "id": "men_8_wash___iron___starch",
+      "name": "Dhoti (Set-3)",
+      "price": 150,
+      "category": "MEN",
+      "serviceType": "Wash & Iron + Starch"
+    },
+    {
+      "id": "men_8_dry_cleaning",
+      "name": "Dhoti (Set-3)",
+      "price": 220,
+      "category": "MEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "men_9_steam_iron",
+      "name": "Blazer",
+      "price": 60,
+      "category": "MEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "men_9_wash_fold",
+      "name": "Blazer",
+      "price": 100,
+      "category": "MEN",
+      "serviceType": "Wash Fold"
+    },
+    {
+      "id": "men_9_wash_iron",
+      "name": "Blazer",
+      "price": 150,
+      "category": "MEN",
+      "serviceType": "Wash Iron"
+    },
+    {
+      "id": "men_9_wash___iron___starch",
+      "name": "Blazer",
+      "price": 180,
+      "category": "MEN",
+      "serviceType": "Wash & Iron + Starch"
+    },
+    {
+      "id": "men_9_dry_cleaning",
+      "name": "Blazer",
+      "price": 250,
+      "category": "MEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "men_10_steam_iron",
+      "name": "Suit (2pcs Blazer+Trouser)",
+      "price": 80,
+      "category": "MEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "men_10_wash_fold",
+      "name": "Suit (2pcs Blazer+Trouser)",
+      "price": 160,
+      "category": "MEN",
+      "serviceType": "Wash Fold"
+    },
+    {
+      "id": "men_10_wash_iron",
+      "name": "Suit (2pcs Blazer+Trouser)",
+      "price": 250,
+      "category": "MEN",
+      "serviceType": "Wash Iron"
+    },
+    {
+      "id": "men_10_wash___iron___starch",
+      "name": "Suit (2pcs Blazer+Trouser)",
+      "price": 300,
+      "category": "MEN",
+      "serviceType": "Wash & Iron + Starch"
+    },
+    {
+      "id": "men_10_dry_cleaning",
+      "name": "Suit (2pcs Blazer+Trouser)",
+      "price": 400,
+      "category": "MEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "men_11_steam_iron",
+      "name": "Suit (3pcs Blazer+Trouser+Shirt)",
+      "price": 100,
+      "category": "MEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "men_11_wash_fold",
+      "name": "Suit (3pcs Blazer+Trouser+Shirt)",
+      "price": 200,
+      "category": "MEN",
+      "serviceType": "Wash Fold"
+    },
+    {
+      "id": "men_11_wash_iron",
+      "name": "Suit (3pcs Blazer+Trouser+Shirt)",
+      "price": 300,
+      "category": "MEN",
+      "serviceType": "Wash Iron"
+    },
+    {
+      "id": "men_11_wash___iron___starch",
+      "name": "Suit (3pcs Blazer+Trouser+Shirt)",
+      "price": 360,
+      "category": "MEN",
+      "serviceType": "Wash & Iron + Starch"
+    },
+    {
+      "id": "men_11_dry_cleaning",
+      "name": "Suit (3pcs Blazer+Trouser+Shirt)",
+      "price": 500,
+      "category": "MEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "men_12_steam_iron",
+      "name": "Short",
+      "price": 10,
+      "category": "MEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "men_12_wash_fold",
+      "name": "Short",
+      "price": 20,
+      "category": "MEN",
+      "serviceType": "Wash Fold"
+    },
+    {
+      "id": "men_12_wash_iron",
+      "name": "Short",
+      "price": 30,
+      "category": "MEN",
+      "serviceType": "Wash Iron"
+    },
+    {
+      "id": "men_12_wash___iron___starch",
+      "name": "Short",
+      "price": 40,
+      "category": "MEN",
+      "serviceType": "Wash & Iron + Starch"
+    },
+    {
+      "id": "men_12_dry_cleaning",
+      "name": "Short",
+      "price": 60,
+      "category": "MEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "men_13_steam_iron",
+      "name": "Jacket",
+      "price": 40,
+      "category": "MEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "men_13_wash_fold",
+      "name": "Jacket",
+      "price": 80,
+      "category": "MEN",
+      "serviceType": "Wash Fold"
+    },
+    {
+      "id": "men_13_wash_iron",
+      "name": "Jacket",
+      "price": 120,
+      "category": "MEN",
+      "serviceType": "Wash Iron"
+    },
+    {
+      "id": "men_13_wash___iron___starch",
+      "name": "Jacket",
+      "price": 150,
+      "category": "MEN",
+      "serviceType": "Wash & Iron + Starch"
+    },
+    {
+      "id": "men_13_dry_cleaning",
+      "name": "Jacket",
+      "price": 250,
+      "category": "MEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "men_14_steam_iron",
+      "name": "Hoodie",
+      "price": 25,
+      "category": "MEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "men_14_wash_fold",
+      "name": "Hoodie",
+      "price": 60,
+      "category": "MEN",
+      "serviceType": "Wash Fold"
+    },
+    {
+      "id": "men_14_wash_iron",
+      "name": "Hoodie",
+      "price": 80,
+      "category": "MEN",
+      "serviceType": "Wash Iron"
+    },
+    {
+      "id": "men_14_wash___iron___starch",
+      "name": "Hoodie",
+      "price": 100,
+      "category": "MEN",
+      "serviceType": "Wash & Iron + Starch"
+    },
+    {
+      "id": "men_14_dry_cleaning",
+      "name": "Hoodie",
+      "price": 180,
+      "category": "MEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "men_15_steam_iron",
+      "name": "Tie",
+      "price": 10,
+      "category": "MEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "men_15_wash_fold",
+      "name": "Tie",
+      "price": 15,
+      "category": "MEN",
+      "serviceType": "Wash Fold"
+    },
+    {
+      "id": "men_15_wash_iron",
+      "name": "Tie",
+      "price": 20,
+      "category": "MEN",
+      "serviceType": "Wash Iron"
+    },
+    {
+      "id": "men_15_wash___iron___starch",
+      "name": "Tie",
+      "price": 30,
+      "category": "MEN",
+      "serviceType": "Wash & Iron + Starch"
+    },
+    {
+      "id": "men_15_dry_cleaning",
+      "name": "Tie",
+      "price": 50,
+      "category": "MEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "men_16_steam_iron",
+      "name": "Handkerchief",
+      "price": 5,
+      "category": "MEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "men_16_wash_fold",
+      "name": "Handkerchief",
+      "price": 8,
+      "category": "MEN",
+      "serviceType": "Wash Fold"
+    },
+    {
+      "id": "men_16_wash_iron",
+      "name": "Handkerchief",
+      "price": 10,
+      "category": "MEN",
+      "serviceType": "Wash Iron"
+    },
+    {
+      "id": "men_16_wash___iron___starch",
+      "name": "Handkerchief",
+      "price": 15,
+      "category": "MEN",
+      "serviceType": "Wash & Iron + Starch"
+    },
+    {
+      "id": "men_16_dry_cleaning",
+      "name": "Handkerchief",
+      "price": 25,
+      "category": "MEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "men_17_steam_iron",
+      "name": "Waist",
+      "price": 10,
+      "category": "MEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "men_17_wash_fold",
+      "name": "Waist",
+      "price": 15,
+      "category": "MEN",
+      "serviceType": "Wash Fold"
+    },
+    {
+      "id": "men_17_wash_iron",
+      "name": "Waist",
+      "price": 25,
+      "category": "MEN",
+      "serviceType": "Wash Iron"
+    },
+    {
+      "id": "men_17_wash___iron___starch",
+      "name": "Waist",
+      "price": 35,
+      "category": "MEN",
+      "serviceType": "Wash & Iron + Starch"
+    },
+    {
+      "id": "men_17_dry_cleaning",
+      "name": "Waist",
+      "price": 50,
+      "category": "MEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "men_18_steam_iron",
+      "name": "Chef Coat",
+      "price": 25,
+      "category": "MEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "men_18_wash_fold",
+      "name": "Chef Coat",
+      "price": 45,
+      "category": "MEN",
+      "serviceType": "Wash Fold"
+    },
+    {
+      "id": "men_18_wash_iron",
+      "name": "Chef Coat",
+      "price": 60,
+      "category": "MEN",
+      "serviceType": "Wash Iron"
+    },
+    {
+      "id": "men_18_wash___iron___starch",
+      "name": "Chef Coat",
+      "price": 80,
+      "category": "MEN",
+      "serviceType": "Wash & Iron + Starch"
+    },
+    {
+      "id": "men_18_dry_cleaning",
+      "name": "Chef Coat",
+      "price": 130,
+      "category": "MEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "women_0_saree_rolling",
+      "name": "Saree (Plain/Silk)",
+      "price": 80,
+      "category": "WOMEN",
+      "serviceType": "Saree Rolling"
+    },
+    {
+      "id": "women_0_rolling___starch",
+      "name": "Saree (Plain/Silk)",
+      "price": 120,
+      "category": "WOMEN",
+      "serviceType": "Rolling + Starch"
+    },
+    {
+      "id": "women_0_steam_iron",
+      "name": "Saree (Plain/Silk)",
+      "price": 40,
+      "category": "WOMEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "women_0_wash___iron",
+      "name": "Saree (Plain/Silk)",
+      "price": 120,
+      "category": "WOMEN",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "women_0_dry_cleaning",
+      "name": "Saree (Plain/Silk)",
+      "price": 220,
+      "category": "WOMEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "women_1_saree_rolling",
+      "name": "Saree (Pattu)",
+      "price": 120,
+      "category": "WOMEN",
+      "serviceType": "Saree Rolling"
+    },
+    {
+      "id": "women_1_rolling___starch",
+      "name": "Saree (Pattu)",
+      "price": 180,
+      "category": "WOMEN",
+      "serviceType": "Rolling + Starch"
+    },
+    {
+      "id": "women_1_steam_iron",
+      "name": "Saree (Pattu)",
+      "price": 60,
+      "category": "WOMEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "women_1_wash___iron",
+      "name": "Saree (Pattu)",
+      "price": 180,
+      "category": "WOMEN",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "women_1_dry_cleaning",
+      "name": "Saree (Pattu)",
+      "price": 300,
+      "category": "WOMEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "women_2_saree_rolling",
+      "name": "Saree (Fancy/Heavy)",
+      "price": 150,
+      "category": "WOMEN",
+      "serviceType": "Saree Rolling"
+    },
+    {
+      "id": "women_2_rolling___starch",
+      "name": "Saree (Fancy/Heavy)",
+      "price": 220,
+      "category": "WOMEN",
+      "serviceType": "Rolling + Starch"
+    },
+    {
+      "id": "women_2_steam_iron",
+      "name": "Saree (Fancy/Heavy)",
+      "price": 80,
+      "category": "WOMEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "women_2_wash___iron",
+      "name": "Saree (Fancy/Heavy)",
+      "price": 220,
+      "category": "WOMEN",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "women_2_dry_cleaning",
+      "name": "Saree (Fancy/Heavy)",
+      "price": 350,
+      "category": "WOMEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "women_3_rolling___starch",
+      "name": "Dupatta",
+      "price": 30,
+      "category": "WOMEN",
+      "serviceType": "Rolling + Starch"
+    },
+    {
+      "id": "women_3_steam_iron",
+      "name": "Dupatta",
+      "price": 15,
+      "category": "WOMEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "women_3_wash___iron",
+      "name": "Dupatta",
+      "price": 30,
+      "category": "WOMEN",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "women_3_dry_cleaning",
+      "name": "Dupatta",
+      "price": 60,
+      "category": "WOMEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "women_4_steam_iron",
+      "name": "Blouse",
+      "price": 15,
+      "category": "WOMEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "women_4_wash___iron",
+      "name": "Blouse",
+      "price": 40,
+      "category": "WOMEN",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "women_4_dry_cleaning",
+      "name": "Blouse",
+      "price": 70,
+      "category": "WOMEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "women_5_steam_iron",
+      "name": "Blouse (Fancy/Heavy)",
+      "price": 30,
+      "category": "WOMEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "women_5_wash___iron",
+      "name": "Blouse (Fancy/Heavy)",
+      "price": 70,
+      "category": "WOMEN",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "women_5_dry_cleaning",
+      "name": "Blouse (Fancy/Heavy)",
+      "price": 120,
+      "category": "WOMEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "women_6_steam_iron",
+      "name": "Lehanga (Plain)",
+      "price": 60,
+      "category": "WOMEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "women_6_wash___iron",
+      "name": "Lehanga (Plain)",
+      "price": 150,
+      "category": "WOMEN",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "women_6_dry_cleaning",
+      "name": "Lehanga (Plain)",
+      "price": 250,
+      "category": "WOMEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "women_7_steam_iron",
+      "name": "Lehanga (Heavy)",
+      "price": 120,
+      "category": "WOMEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "women_7_wash___iron",
+      "name": "Lehanga (Heavy)",
+      "price": 300,
+      "category": "WOMEN",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "women_7_dry_cleaning",
+      "name": "Lehanga (Heavy)",
+      "price": 500,
+      "category": "WOMEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "women_8_steam_iron",
+      "name": "Kurti (Fancy)",
+      "price": 30,
+      "category": "WOMEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "women_8_wash___iron",
+      "name": "Kurti (Fancy)",
+      "price": 80,
+      "category": "WOMEN",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "women_8_dry_cleaning",
+      "name": "Kurti (Fancy)",
+      "price": 130,
+      "category": "WOMEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "women_9_steam_iron",
+      "name": "Kurti (Plain)",
+      "price": 20,
+      "category": "WOMEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "women_9_wash___iron",
+      "name": "Kurti (Plain)",
+      "price": 60,
+      "category": "WOMEN",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "women_9_dry_cleaning",
+      "name": "Kurti (Plain)",
+      "price": 100,
+      "category": "WOMEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "women_10_steam_iron",
+      "name": "Pajama/Dupatta",
+      "price": 15,
+      "category": "WOMEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "women_10_wash___iron",
+      "name": "Pajama/Dupatta",
+      "price": 50,
+      "category": "WOMEN",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "women_10_dry_cleaning",
+      "name": "Pajama/Dupatta",
+      "price": 80,
+      "category": "WOMEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "women_11_steam_iron",
+      "name": "Kurti (3pcs)",
+      "price": 45,
+      "category": "WOMEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "women_11_wash___iron",
+      "name": "Kurti (3pcs)",
+      "price": 120,
+      "category": "WOMEN",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "women_11_dry_cleaning",
+      "name": "Kurti (3pcs)",
+      "price": 220,
+      "category": "WOMEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "women_12_steam_iron",
+      "name": "Long Dress",
+      "price": 40,
+      "category": "WOMEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "women_12_wash___iron",
+      "name": "Long Dress",
+      "price": 100,
+      "category": "WOMEN",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "women_12_dry_cleaning",
+      "name": "Long Dress",
+      "price": 180,
+      "category": "WOMEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "women_13_steam_iron",
+      "name": "Skirt",
+      "price": 25,
+      "category": "WOMEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "women_13_wash___iron",
+      "name": "Skirt",
+      "price": 60,
+      "category": "WOMEN",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "women_13_dry_cleaning",
+      "name": "Skirt",
+      "price": 110,
+      "category": "WOMEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "women_14_steam_iron",
+      "name": "Tops/Shirt",
+      "price": 20,
+      "category": "WOMEN",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "women_14_wash___iron",
+      "name": "Tops/Shirt",
+      "price": 50,
+      "category": "WOMEN",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "women_14_dry_cleaning",
+      "name": "Tops/Shirt",
+      "price": 90,
+      "category": "WOMEN",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "household_0_steam_iron",
+      "name": "Curtain",
+      "price": 40,
+      "category": "HOUSEHOLD",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "household_0_wash___iron",
+      "name": "Curtain",
+      "price": 120,
+      "category": "HOUSEHOLD",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "household_0_dry_cleaning",
+      "name": "Curtain",
+      "price": 180,
+      "category": "HOUSEHOLD",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "household_1_steam_iron",
+      "name": "Curtain (Silk/Velvet)",
+      "price": 60,
+      "category": "HOUSEHOLD",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "household_1_wash___iron",
+      "name": "Curtain (Silk/Velvet)",
+      "price": 180,
+      "category": "HOUSEHOLD",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "household_1_dry_cleaning",
+      "name": "Curtain (Silk/Velvet)",
+      "price": 250,
+      "category": "HOUSEHOLD",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "household_2_steam_iron",
+      "name": "Bed Sheet (S)",
+      "price": 25,
+      "category": "HOUSEHOLD",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "household_2_wash___iron",
+      "name": "Bed Sheet (S)",
+      "price": 65,
+      "category": "HOUSEHOLD",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "household_2_dry_cleaning",
+      "name": "Bed Sheet (S)",
+      "price": 120,
+      "category": "HOUSEHOLD",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "household_3_steam_iron",
+      "name": "Bed Sheet (L)",
+      "price": 35,
+      "category": "HOUSEHOLD",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "household_3_wash___iron",
+      "name": "Bed Sheet (L)",
+      "price": 85,
+      "category": "HOUSEHOLD",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "household_3_dry_cleaning",
+      "name": "Bed Sheet (L)",
+      "price": 150,
+      "category": "HOUSEHOLD",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "household_4_wash___iron",
+      "name": "Blanket (S)",
+      "price": 150,
+      "category": "HOUSEHOLD",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "household_4_dry_cleaning",
+      "name": "Blanket (S)",
+      "price": 250,
+      "category": "HOUSEHOLD",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "household_5_wash___iron",
+      "name": "Blanket (L)",
+      "price": 220,
+      "category": "HOUSEHOLD",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "household_5_dry_cleaning",
+      "name": "Blanket (L)",
+      "price": 350,
+      "category": "HOUSEHOLD",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "household_6_steam_iron",
+      "name": "Covers",
+      "price": 15,
+      "category": "HOUSEHOLD",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "household_6_wash___iron",
+      "name": "Covers",
+      "price": 40,
+      "category": "HOUSEHOLD",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "household_6_dry_cleaning",
+      "name": "Covers",
+      "price": 70,
+      "category": "HOUSEHOLD",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "household_7_wash___iron",
+      "name": "Pillow",
+      "price": 50,
+      "category": "HOUSEHOLD",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "household_7_dry_cleaning",
+      "name": "Pillow",
+      "price": 100,
+      "category": "HOUSEHOLD",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "household_8_wash___iron",
+      "name": "Carpet Cleaning",
+      "price": 350,
+      "category": "HOUSEHOLD",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "household_8_dry_cleaning",
+      "name": "Carpet Cleaning",
+      "price": 500,
+      "category": "HOUSEHOLD",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "kids_0_steam_iron",
+      "name": "Blazer",
+      "price": 40,
+      "category": "KIDS",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "kids_0_wash___iron",
+      "name": "Blazer",
+      "price": 90,
+      "category": "KIDS",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "kids_0_dry_cleaning",
+      "name": "Blazer",
+      "price": 150,
+      "category": "KIDS",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "kids_1_steam_iron",
+      "name": "Shirt + T-Shirt",
+      "price": 10,
+      "category": "KIDS",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "kids_1_wash___iron",
+      "name": "Shirt + T-Shirt",
+      "price": 30,
+      "category": "KIDS",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "kids_1_dry_cleaning",
+      "name": "Shirt + T-Shirt",
+      "price": 65,
+      "category": "KIDS",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "kids_2_steam_iron",
+      "name": "Skirt + Frock",
+      "price": 15,
+      "category": "KIDS",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "kids_2_wash___iron",
+      "name": "Skirt + Frock",
+      "price": 50,
+      "category": "KIDS",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "kids_2_dry_cleaning",
+      "name": "Skirt + Frock",
+      "price": 80,
+      "category": "KIDS",
+      "serviceType": "Dry Cleaning"
+    },
+    {
+      "id": "kids_3_steam_iron",
+      "name": "Trouser / Jeans Pant",
+      "price": 15,
+      "category": "KIDS",
+      "serviceType": "Steam Iron"
+    },
+    {
+      "id": "kids_3_wash___iron",
+      "name": "Trouser / Jeans Pant",
+      "price": 40,
+      "category": "KIDS",
+      "serviceType": "Wash & Iron"
+    },
+    {
+      "id": "kids_3_dry_cleaning",
+      "name": "Trouser / Jeans Pant",
+      "price": 75,
+      "category": "KIDS",
+      "serviceType": "Dry Cleaning"
+    }
+  ],
+  "settings": {
+    "address": "Geetha Nagar, 8-4-300, Beside St. Martin School, Kandri Gutta, Balanagar, Hyderabad, Telangana – 500042",
+    "phones": [
+      "7337427757",
+      "8919501286",
+      "9014025932"
+    ],
+    "upiId": "QR918919501286-0197@unionbankofindia",
+    "bannerText": "Professional Laundry & Dry Cleaning Services",
+    "bannerSubtext": "Doorstep Pickup & Delivery Available in Balanagar, Kukatpally & Surrounding Hyderabad Areas.",
+    "offers": [
+      "Flat 10% Off on your first order! Use code: SKFIRST10",
+      "Free pickup & delivery on orders above ₹500",
+      "Get 5% loyalty cashback points on every order completed!"
+    ],
+    "faqs": [
+      {
+        "id": "faq-1",
+        "question": "What is your turnaround time?",
+        "answer": "Our standard turnaround time is 24 to 48 hours depending on the items and service type."
+      },
+      {
+        "id": "faq-2",
+        "question": "Do you provide pickup and delivery?",
+        "answer": "Yes, we provide doorstep pickup and delivery services across Balanagar, Kukatpally, Jeedimetla, and surrounding areas."
+      },
+      {
+        "id": "faq-3",
+        "question": "How do I make a payment?",
+        "answer": "You can pay using Cash on Delivery (COD) or securely via UPI (Google Pay, PhonePe, Paytm) by scanning our QR code or entering our UPI ID."
+      },
+      {
+        "id": "faq-4",
+        "question": "What is your policy for delicate clothes?",
+        "answer": "Delicate clothes like silk sarees, blazers, and designer lehangas are dry cleaned under expert care using eco-friendly processes."
+      }
+    ],
+    "testimonials": [
+      {
+        "id": "test-1",
+        "name": "Anil Kumar",
+        "rating": 5,
+        "review": "Excellent service! They picked up my suits and returned them steam-ironed and looking brand new in just 24 hours.",
+        "date": "2026-06-28"
+      },
+      {
+        "id": "test-2",
+        "name": "Priya Sharma",
+        "rating": 5,
+        "review": "I regularly give my heavy sarees here. Very professional, highly recommended for delicate women's wear in Balanagar.",
+        "date": "2026-06-25"
+      },
+      {
+        "id": "test-3",
+        "name": "Vikram Reddy",
+        "rating": 5,
+        "review": "Best laundry service near Kandri Gutta. The prices are reasonable and the tracking page is extremely helpful.",
+        "date": "2026-06-29"
+      }
+    ],
+    "coupons": [
+      {
+        "code": "SKFIRST10",
+        "discountType": "percentage",
+        "value": 10,
+        "minOrderValue": 200,
+        "description": "Get 10% Off on orders above ₹200",
+        "isActive": true
+      },
+      {
+        "code": "SKFREE50",
+        "discountType": "fixed",
+        "value": 50,
+        "minOrderValue": 500,
+        "description": "Save flat ₹50 on orders above ₹500",
+        "isActive": true
+      }
+    ]
+  },
+  "orders": [],
+  "users": [
+    {
+      "id": "u-owner",
+      "name": "SK Laundry Owner",
+      "email": "owner@sklaundry.com",
+      "mobile": "7337427757",
+      "loyaltyPoints": 0,
+      "createdAt": "2026-07-04T08:25:36.155Z",
+      "role": "OWNER"
+    }
+  ],
+  "blockedUserIds": [],
+  "auditLogs": [],
+  "ownerPassword": "Kalpana@3375"
+}

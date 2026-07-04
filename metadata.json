@@ -1,0 +1,6 @@
+{
+  "name": "SK Laundry Services",
+  "description": "An enterprise-level Full Stack Laundry Management Platform with Customer Portal, Online Ordering, Tracking, UPI Payments, and Owner-Only Admin Dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
