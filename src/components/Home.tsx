@@ -526,7 +526,7 @@ export default function Home({ setActivePage, settings }: HomeProps) {
                       </p>
                     </div>
                     <a 
-                      href="https://maps.google.com/?q=Geetha+Nagar+Balanagar+Hyderabad" 
+                      href="https://maps.app.goo.gl/fPdremRfLthLfxpj6?g_st=aw" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="inline-block rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold text-xs px-5 py-3 transition-colors shadow-md cursor-pointer"
