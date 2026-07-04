@@ -531,8 +531,8 @@ app.post("/api/auth/login", async (req, res) => {
       return res.status(400).json({ error: "Please enter your credentials." });
     }
 
-    // Check if owner login
-    if (email === "Sklaundry_3375" && password === (database.ownerPassword || "Kalpana@3375")) {
+    // Check if owner login (case-insensitive for owner ID)
+    if (email && email.toLowerCase() === "sklaundry_3375" && password === (database.ownerPassword || "Kalpana@3375")) {
       const owner = database.users.find(u => u.role === "OWNER") || {
         id: "u-owner",
         name: "SK Laundry Owner",

@@ -1364,9 +1364,27 @@
       "loyaltyPoints": 0,
       "createdAt": "2026-07-04T12:36:09.213Z",
       "role": "OWNER"
+    },
+    {
+      "id": "u-22936mq",
+      "name": "ashwanth",
+      "email": "ashwanthreddy43@gmail.com",
+      "mobile": "7995927765",
+      "address": "",
+      "loyaltyPoints": 10,
+      "createdAt": "2026-07-04T13:21:18.147Z",
+      "role": "CUSTOMER",
+      "password": "$2b$10$nPiVqkfhmpJKrHjTaCvxmugroF1HP2U/zGoCip8nFRB9175PVMvAC"
     }
   ],
   "blockedUserIds": [],
-  "auditLogs": [],
+  "auditLogs": [
+    {
+      "id": "log-d2jusrv",
+      "action": "New user registered: ashwanth (ashwanthreddy43@gmail.com)",
+      "user": "ashwanth",
+      "timestamp": "2026-07-04T13:21:18.151Z"
+    }
+  ],
   "ownerPassword": "Kalpana@3375"
 }
