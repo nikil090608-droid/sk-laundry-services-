@@ -4,6 +4,7 @@ import fs from "fs";
 import { LaundryItem, Order, User, AppSettings, OrderStatus, PaymentStatus } from "./src/types";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import mongoose from "mongoose";
 
 const JWT_SECRET = process.env.JWT_SECRET || "supersecretjwtkey123";
 
@@ -185,9 +186,328 @@ let database: {
   ownerPassword: "Kalpana@3375"
 };
 
-let startupError: any = null;
+// ==================== MONGOOSE SCHEMAS & MODELS ====================
 
-// Load or initialize DB on startup
+const userSchema = new mongoose.Schema({
+  id: { type: String, required: true, unique: true },
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  mobile: { type: String, required: true },
+  address: { type: String, default: "" },
+  loyaltyPoints: { type: Number, default: 0 },
+  createdAt: { type: String, default: () => new Date().toISOString() },
+  role: { type: String, required: true },
+  password: { type: String }
+}, { minimize: false });
+
+const orderSchema = new mongoose.Schema({
+  id: { type: String, required: true, unique: true },
+  customerId: { type: String },
+  customerName: { type: String },
+  customerMobile: { type: String },
+  items: { type: mongoose.Schema.Types.Mixed, required: true },
+  totalPrice: { type: Number, required: true },
+  discountAmount: { type: Number, default: 0 },
+  finalAmount: { type: Number },
+  status: { type: String, required: true },
+  paymentStatus: { type: String, required: true },
+  paymentMethod: { type: String, required: true },
+  upiTxnId: { type: String },
+  paymentScreenshot: { type: String },
+  pickupAddress: { type: String },
+  pickupDate: { type: String },
+  pickupTimeSlot: { type: String },
+  notes: { type: String },
+  loyaltyPointsEarned: { type: Number, default: 0 },
+  loyaltyPointsSpent: { type: Number, default: 0 },
+  timeline: { type: mongoose.Schema.Types.Mixed, default: [] },
+  clothImages: { type: mongoose.Schema.Types.Mixed, default: [] },
+  createdAt: { type: String },
+  updatedAt: { type: String },
+  mobileNumber: { type: String },
+  deliveryDate: { type: String },
+  pickupTime: { type: String },
+  couponCode: { type: String }
+}, { minimize: false });
+
+const serviceSchema = new mongoose.Schema({
+  id: { type: String, required: true, unique: true },
+  name: { type: String, required: true },
+  price: { type: Number, required: true },
+  category: { type: String, required: true },
+  serviceType: { type: String, required: true }
+}, { minimize: false });
+
+const settingsSchema = new mongoose.Schema({
+  address: { type: String },
+  phones: [{ type: String }],
+  upiId: { type: String },
+  bannerText: { type: String },
+  bannerSubtext: { type: String },
+  offers: [{ type: String }],
+  faqs: { type: mongoose.Schema.Types.Mixed, default: [] },
+  testimonials: { type: mongoose.Schema.Types.Mixed, default: [] },
+  coupons: { type: mongoose.Schema.Types.Mixed, default: [] }
+}, { minimize: false });
+
+const auditLogSchema = new mongoose.Schema({
+  id: { type: String, required: true, unique: true },
+  action: { type: String, required: true },
+  user: { type: String, required: true },
+  timestamp: { type: String, required: true }
+}, { minimize: false });
+
+const configSchema = new mongoose.Schema({
+  key: { type: String, required: true, unique: true },
+  blockedUserIds: [{ type: String }],
+  ownerPassword: { type: String }
+}, { minimize: false });
+
+const UserModel = mongoose.models.User || mongoose.model("User", userSchema);
+const OrderModel = mongoose.models.Order || mongoose.model("Order", orderSchema);
+const ServiceModel = mongoose.models.Service || mongoose.model("Service", serviceSchema);
+const SettingsModel = mongoose.models.Settings || mongoose.model("Settings", settingsSchema);
+const AuditLogModel = mongoose.models.AuditLog || mongoose.model("AuditLog", auditLogSchema);
+const ConfigModel = mongoose.models.Config || mongoose.model("Config", configSchema);
+
+let startupError: any = null;
+let isMongoConnected = false;
+let lastConnectAttempt = 0;
+const CONNECT_COOLDOWN_MS = 20000; // 20 seconds cooldown between reconnect attempts to avoid blocking the request thread
+
+// Function to connect to MongoDB with failover
+async function connectToMongo() {
+  const mongoUri = process.env.MONGODB_URI;
+  if (!mongoUri) {
+    console.log("[MongoDB] MONGODB_URI environment variable is not defined. Falling back to local db.json.");
+    return;
+  }
+
+  if ((mongoose.connection.readyState as any) === 1) {
+    isMongoConnected = true;
+    return;
+  }
+
+  const now = Date.now();
+  if (now - lastConnectAttempt < CONNECT_COOLDOWN_MS) {
+    // Cooldown is active; do not try to connect to avoid blocking request thread
+    return;
+  }
+
+  lastConnectAttempt = now;
+
+  try {
+    console.log("[MongoDB] Connecting to MongoDB...");
+    // Disable Mongoose buffering globally so queries fail fast rather than hanging the API
+    mongoose.set("bufferCommands", false);
+
+    await mongoose.connect(mongoUri, {
+      serverSelectionTimeoutMS: 3000 // fail fast in 3 seconds to keep UI responsive
+    });
+
+    if ((mongoose.connection.readyState as any) === 1) {
+      isMongoConnected = true;
+      console.log("[MongoDB] Connected successfully to MongoDB instance.");
+
+      // Initial seed checking with a strict timeout
+      const userCount = await (UserModel as any).countDocuments({}).maxTimeMS(2000);
+      if (userCount === 0) {
+        console.log("[MongoDB] No users found in DB. Seeding default state...");
+        await saveDatabaseToMongo();
+      } else {
+        await loadDatabaseFromMongo();
+      }
+    } else {
+      isMongoConnected = false;
+    }
+  } catch (err: any) {
+    console.error("[MongoDB] Connection failure:", err.message);
+    isMongoConnected = false;
+  }
+}
+
+// Load database state from MongoDB
+async function loadDatabaseFromMongo() {
+  if (!isMongoConnected) return;
+  try {
+    const [users, orders, services, settingsDoc, auditLogs, configDoc] = await Promise.all([
+      (UserModel as any).find({}).maxTimeMS(2500).lean(),
+      (OrderModel as any).find({}).maxTimeMS(2500).lean(),
+      (ServiceModel as any).find({}).maxTimeMS(2500).lean(),
+      (SettingsModel as any).findOne({}).maxTimeMS(2500).lean(),
+      (AuditLogModel as any).find({}).sort({ timestamp: -1 }).limit(500).maxTimeMS(2500).lean(),
+      (ConfigModel as any).findOne({ key: "app_config" }).maxTimeMS(2500).lean()
+    ]);
+
+    if (users.length > 0) {
+      database.users = users as any[];
+    }
+    database.orders = (orders as any[]) || [];
+    if (services.length > 0) {
+      database.services = services as any[];
+    }
+    if (settingsDoc) {
+      database.settings = {
+        address: settingsDoc.address || database.settings.address,
+        phones: settingsDoc.phones || database.settings.phones,
+        upiId: settingsDoc.upiId || database.settings.upiId,
+        bannerText: settingsDoc.bannerText || database.settings.bannerText,
+        bannerSubtext: settingsDoc.bannerSubtext || database.settings.bannerSubtext,
+        offers: settingsDoc.offers || database.settings.offers,
+        faqs: settingsDoc.faqs || database.settings.faqs,
+        testimonials: settingsDoc.testimonials || database.settings.testimonials,
+        coupons: settingsDoc.coupons || database.settings.coupons
+      };
+    }
+    database.auditLogs = (auditLogs as any[]) || [];
+    if (configDoc) {
+      database.blockedUserIds = configDoc.blockedUserIds || [];
+      database.ownerPassword = configDoc.ownerPassword || "Kalpana@3375";
+    }
+    console.log(`[MongoDB] Loaded data successfully: ${database.users.length} users, ${database.orders.length} orders.`);
+  } catch (err: any) {
+    console.error("[MongoDB] Error loading database state:", err);
+    // If a network timeout or query buffering issue happens, mark as disconnected to trigger cooldown
+    if (err.name === "MongooseError" || err.name === "MongoNetworkError" || err.message?.includes("buffering timed out") || err.message?.includes("timed out")) {
+      console.log("[MongoDB] Disconnection detected during query execution. Setting isMongoConnected = false.");
+      isMongoConnected = false;
+    }
+  }
+}
+
+// Save database state back to MongoDB
+async function saveDatabaseToMongo() {
+  if (!isMongoConnected) return;
+  try {
+    console.log("[MongoDB] Writing database modifications...");
+
+    // Upsert users
+    for (const u of database.users as any[]) {
+      await (UserModel as any).findOneAndUpdate(
+        { id: u.id },
+        {
+          name: u.name,
+          email: u.email,
+          mobile: u.mobile,
+          address: u.address,
+          loyaltyPoints: u.loyaltyPoints,
+          createdAt: u.createdAt,
+          role: u.role,
+          password: u.password
+        },
+        { upsert: true, new: true }
+      ).maxTimeMS(2000);
+    }
+    const currentInMemoryUserIds = database.users.map(u => u.id);
+    await (UserModel as any).deleteMany({ id: { $nin: currentInMemoryUserIds } }).maxTimeMS(2000);
+
+    // Upsert orders
+    for (const o of database.orders as any[]) {
+      await (OrderModel as any).findOneAndUpdate(
+        { id: o.id },
+        {
+          customerId: o.customerId,
+          customerName: o.customerName,
+          customerMobile: o.customerMobile || o.mobileNumber,
+          items: o.items,
+          totalPrice: o.totalPrice,
+          discountAmount: o.discountAmount,
+          finalAmount: o.finalAmount !== undefined ? o.finalAmount : (o.totalPrice - (o.discountAmount || 0)),
+          status: o.status,
+          paymentStatus: o.paymentStatus,
+          paymentMethod: o.paymentMethod,
+          upiTxnId: o.upiTxnId,
+          paymentScreenshot: o.paymentScreenshot,
+          pickupAddress: o.pickupAddress || o.address,
+          pickupDate: o.pickupDate,
+          pickupTimeSlot: o.pickupTimeSlot || o.pickupTime,
+          notes: o.notes,
+          loyaltyPointsEarned: o.loyaltyPointsEarned,
+          loyaltyPointsSpent: o.loyaltyPointsSpent,
+          timeline: o.timeline,
+          clothImages: o.clothImages,
+          createdAt: o.createdAt,
+          updatedAt: o.updatedAt || new Date().toISOString(),
+          mobileNumber: o.mobileNumber,
+          deliveryDate: o.deliveryDate,
+          pickupTime: o.pickupTime,
+          couponCode: o.couponCode
+        },
+        { upsert: true, new: true }
+      ).maxTimeMS(2000);
+    }
+    const currentInMemoryOrderIds = database.orders.map(o => o.id);
+    await (OrderModel as any).deleteMany({ id: { $nin: currentInMemoryOrderIds } }).maxTimeMS(2000);
+
+    // Upsert services
+    for (const s of database.services) {
+      await (ServiceModel as any).findOneAndUpdate(
+        { id: s.id },
+        {
+          name: s.name,
+          price: s.price,
+          category: s.category,
+          serviceType: s.serviceType
+        },
+        { upsert: true, new: true }
+      ).maxTimeMS(2000);
+    }
+    const currentInMemoryServiceIds = database.services.map(s => s.id);
+    await (ServiceModel as any).deleteMany({ id: { $nin: currentInMemoryServiceIds } }).maxTimeMS(2000);
+
+    // Upsert settings
+    await (SettingsModel as any).findOneAndUpdate(
+      {},
+      {
+        address: database.settings.address,
+        phones: database.settings.phones,
+        upiId: database.settings.upiId,
+        bannerText: database.settings.bannerText,
+        bannerSubtext: database.settings.bannerSubtext,
+        offers: database.settings.offers,
+        faqs: database.settings.faqs,
+        testimonials: database.settings.testimonials,
+        coupons: database.settings.coupons
+      },
+      { upsert: true, new: true }
+    ).maxTimeMS(2000);
+
+    // Upsert app configuration
+    await (ConfigModel as any).findOneAndUpdate(
+      { key: "app_config" },
+      {
+        blockedUserIds: database.blockedUserIds,
+        ownerPassword: database.ownerPassword || "Kalpana@3375"
+      },
+      { upsert: true, new: true }
+    ).maxTimeMS(2000);
+
+    // Upsert audit logs
+    for (const l of database.auditLogs) {
+      await (AuditLogModel as any).findOneAndUpdate(
+        { id: l.id },
+        {
+          action: l.action,
+          user: l.user,
+          timestamp: l.timestamp
+        },
+        { upsert: true, new: true }
+      ).maxTimeMS(2000);
+    }
+    const currentInMemoryLogIds = database.auditLogs.map(l => l.id);
+    await (AuditLogModel as any).deleteMany({ id: { $nin: currentInMemoryLogIds } }).maxTimeMS(2000);
+
+    console.log("[MongoDB] Persistent state sync accomplished successfully.");
+  } catch (err: any) {
+    console.error("[MongoDB] Save state sync error:", err);
+    if (err.name === "MongooseError" || err.name === "MongoNetworkError" || err.message?.includes("buffering timed out") || err.message?.includes("timed out")) {
+      console.log("[MongoDB] Disconnection detected during save. Setting isMongoConnected = false.");
+      isMongoConnected = false;
+    }
+  }
+}
+
+// Load or initialize DB on startup (JSON file backup)
 try {
   if (!fs.existsSync(DB_DIR)) {
     fs.mkdirSync(DB_DIR, { recursive: true });
@@ -215,13 +535,29 @@ try {
   console.error("Error setting up database file, using in-memory fallbacks:", e);
 }
 
-// Function to persist DB changes
+// Run initial connect to Mongo
+connectToMongo();
+
+// Middleware to load database state from MongoDB on every request to ensure freshness (crucial for Serverless cold-starts and scaleouts)
+app.use(async (req, res, next) => {
+  if (req.path.startsWith("/api")) {
+    if (!isMongoConnected && process.env.MONGODB_URI) {
+      await connectToMongo();
+    }
+    await loadDatabaseFromMongo();
+  }
+  next();
+});
+
+// Function to persist DB changes (keeps local JSON in sync and pushes to MongoDB)
 function saveDatabase() {
   try {
     fs.writeFileSync(DB_FILE, JSON.stringify(database, null, 2), "utf-8");
   } catch (e) {
     console.error("Failed to save database changes to disk:", e);
   }
+  // Async background sync with MongoDB
+  saveDatabaseToMongo();
 }
 
 // Helper to log actions
@@ -235,6 +571,42 @@ function logAudit(action: string, user: string) {
   database.auditLogs.unshift(log);
   if (database.auditLogs.length > 500) database.auditLogs.pop();
   saveDatabase();
+}
+
+// JWT verification middleware
+function authenticateJWT(req: any, res: any, next: any) {
+  const authHeader = req.headers.authorization || req.headers.Authorization;
+  if (!authHeader) {
+    console.log("[JWT-AUTH] Unauthorized request - No Authorization header provided");
+    return res.status(401).json({ error: "Access denied. No authorization token provided." });
+  }
+
+  const token = authHeader.startsWith("Bearer ") ? authHeader.substring(7) : authHeader;
+  if (!token) {
+    console.log("[JWT-AUTH] Unauthorized request - Token is empty or malformed");
+    return res.status(401).json({ error: "Access denied. Invalid token format." });
+  }
+
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch (err: any) {
+    console.error("[JWT-AUTH] Verification error:", err.message);
+    if (err.name === "TokenExpiredError") {
+      return res.status(401).json({ error: "Your session has expired. Please log in again.", expired: true });
+    }
+    return res.status(401).json({ error: "Invalid token. Authentication failed." });
+  }
+}
+
+// Admin/Owner verification middleware
+function requireOwner(req: any, res: any, next: any) {
+  if (!req.user || req.user.role !== "OWNER") {
+    console.log("[JWT-AUTH] Access denied. Expected OWNER role but got:", req.user ? req.user.role : "none");
+    return res.status(403).json({ error: "Access denied. Admin privileges required." });
+  }
+  next();
 }
 
 // ---------------- API ENDPOINTS ----------------
@@ -271,7 +643,7 @@ app.get("/api/services", (req, res) => {
   res.json(database.services);
 });
 
-app.post("/api/services", (req, res) => {
+app.post("/api/services", authenticateJWT, requireOwner, (req: any, res) => {
   const { id, name, price, category, serviceType } = req.body;
   if (!name || isNaN(Number(price)) || !category) {
     return res.status(400).json({ error: "Missing or invalid service details." });
@@ -302,7 +674,7 @@ app.post("/api/services", (req, res) => {
   res.json({ success: true, services: database.services });
 });
 
-app.delete("/api/services/:id", (req, res) => {
+app.delete("/api/services/:id", authenticateJWT, requireOwner, (req: any, res) => {
   const { id } = req.params;
   const item = database.services.find(s => s.id === id);
   database.services = database.services.filter(s => s.id !== id);
@@ -318,7 +690,7 @@ app.get("/api/settings", (req, res) => {
   res.json(database.settings);
 });
 
-app.post("/api/settings", (req, res) => {
+app.post("/api/settings", authenticateJWT, requireOwner, (req: any, res) => {
   const { address, phones, upiId, bannerText, bannerSubtext, offers } = req.body;
   database.settings = {
     ...database.settings,
@@ -335,7 +707,7 @@ app.post("/api/settings", (req, res) => {
 });
 
 // FAQs Endpoints
-app.post("/api/settings/faqs", (req, res) => {
+app.post("/api/settings/faqs", authenticateJWT, requireOwner, (req: any, res) => {
   const { question, answer } = req.body;
   if (!question || !answer) return res.status(400).json({ error: "Question and answer are required." });
   const newFaq = { id: "faq-" + Math.random().toString(36).substring(2, 9), question, answer };
@@ -345,7 +717,7 @@ app.post("/api/settings/faqs", (req, res) => {
   res.json({ success: true, settings: database.settings });
 });
 
-app.put("/api/settings/faqs/:id", (req, res) => {
+app.put("/api/settings/faqs/:id", authenticateJWT, requireOwner, (req: any, res) => {
   const { id } = req.params;
   const { question, answer } = req.body;
   const index = database.settings.faqs.findIndex(f => f.id === id);
@@ -359,7 +731,7 @@ app.put("/api/settings/faqs/:id", (req, res) => {
   }
 });
 
-app.delete("/api/settings/faqs/:id", (req, res) => {
+app.delete("/api/settings/faqs/:id", authenticateJWT, requireOwner, (req: any, res) => {
   const { id } = req.params;
   database.settings.faqs = database.settings.faqs.filter(f => f.id !== id);
   logAudit(`Deleted FAQ ID: ${id}`, "Owner/Admin");
@@ -384,7 +756,7 @@ app.post("/api/settings/testimonials", (req, res) => {
   res.json({ success: true, settings: database.settings });
 });
 
-app.delete("/api/settings/testimonials/:id", (req, res) => {
+app.delete("/api/settings/testimonials/:id", authenticateJWT, requireOwner, (req: any, res) => {
   const { id } = req.params;
   database.settings.testimonials = database.settings.testimonials.filter(t => t.id !== id);
   logAudit(`Deleted Testimonial ID: ${id}`, "Owner/Admin");
@@ -393,7 +765,7 @@ app.delete("/api/settings/testimonials/:id", (req, res) => {
 });
 
 // Coupons Endpoints
-app.post("/api/settings/coupons", (req, res) => {
+app.post("/api/settings/coupons", authenticateJWT, requireOwner, (req: any, res) => {
   const { code, discountType, value, minOrderValue, description } = req.body;
   if (!code || !value) return res.status(400).json({ error: "Coupon code and value are required." });
   
@@ -414,7 +786,7 @@ app.post("/api/settings/coupons", (req, res) => {
   res.json({ success: true, settings: database.settings });
 });
 
-app.put("/api/settings/coupons/:code", (req, res) => {
+app.put("/api/settings/coupons/:code", authenticateJWT, requireOwner, (req: any, res) => {
   const { code } = req.params;
   const { discountType, value, minOrderValue, description, isActive } = req.body;
   const index = database.settings.coupons.findIndex(c => c.code === code.toUpperCase());
@@ -435,7 +807,7 @@ app.put("/api/settings/coupons/:code", (req, res) => {
   }
 });
 
-app.delete("/api/settings/coupons/:code", (req, res) => {
+app.delete("/api/settings/coupons/:code", authenticateJWT, requireOwner, (req: any, res) => {
   const { code } = req.params;
   database.settings.coupons = database.settings.coupons.filter(c => c.code !== code.toUpperCase());
   logAudit(`Deleted Coupon: ${code}`, "Owner/Admin");
@@ -592,7 +964,7 @@ app.post("/api/auth/login", async (req, res) => {
 
 // Admin password change endpoint
 // Admin password change endpoint
-app.post("/api/auth/verify-password", async (req, res) => {
+app.post("/api/auth/verify-password", authenticateJWT, requireOwner, (req: any, res) => {
   try {
     const { currentPassword } = req.body;
     if (!currentPassword) {
@@ -611,7 +983,7 @@ app.post("/api/auth/verify-password", async (req, res) => {
   }
 });
 
-app.post("/api/auth/change-password", async (req, res) => {
+app.post("/api/auth/change-password", authenticateJWT, requireOwner, (req: any, res) => {
   try {
     const { currentPassword, newPassword } = req.body;
     if (!currentPassword || !newPassword) {
@@ -774,13 +1146,18 @@ app.post("/api/orders", async (req, res) => {
   }
 });
 
-app.get("/api/orders", (req, res) => {
+app.get("/api/orders", authenticateJWT, (req: any, res) => {
   const customerId = req.query.customerId as string | undefined;
-  // Local fallback
-  if (customerId) {
-    return res.json(database.orders.filter(o => o.customerId === customerId));
+  
+  if (req.user.role === "OWNER") {
+    if (customerId) {
+      return res.json(database.orders.filter(o => o.customerId === customerId));
+    }
+    return res.json(database.orders);
+  } else {
+    // Customers can only access their own orders
+    return res.json(database.orders.filter(o => o.customerId === req.user.id));
   }
-  return res.json(database.orders);
 });
 
 // Single Order Search / Track public endpoint
@@ -794,7 +1171,7 @@ app.get("/api/orders/:id", (req, res) => {
 });
 
 // Admin update order endpoint
-app.put("/api/orders/:id", (req, res) => {
+app.put("/api/orders/:id", authenticateJWT, requireOwner, (req: any, res) => {
   const { id } = req.params;
   const { status, paymentStatus, timelineNotes, address, deliveryDate } = req.body;
 
@@ -833,7 +1210,7 @@ app.put("/api/orders/:id", (req, res) => {
   });
 });
 
-app.delete("/api/orders/:id", (req, res) => {
+app.delete("/api/orders/:id", authenticateJWT, requireOwner, (req: any, res) => {
   const { id } = req.params;
 
   const exists = database.orders.find(o => o.id.toUpperCase() === id.toUpperCase());
@@ -848,12 +1225,12 @@ app.delete("/api/orders/:id", (req, res) => {
 
 
 // Customer management
-app.get("/api/users", (req, res) => {
+app.get("/api/users", authenticateJWT, requireOwner, (req: any, res) => {
   const customersOnly = database.users.filter(u => u.role === "CUSTOMER");
   return res.json(customersOnly);
 });
 
-app.put("/api/users/:id/block", (req, res) => {
+app.put("/api/users/:id/block", authenticateJWT, requireOwner, (req: any, res) => {
   const { id } = req.params;
   const { block } = req.body; // boolean
 
@@ -874,7 +1251,7 @@ app.put("/api/users/:id/block", (req, res) => {
   return res.json({ success: true, blockedUserIds: database.blockedUserIds });
 });
 
-app.delete("/api/users/:id", (req, res) => {
+app.delete("/api/users/:id", authenticateJWT, requireOwner, (req: any, res) => {
   const { id } = req.params;
 
   const user = database.users.find(u => u.id === id);
@@ -889,7 +1266,7 @@ app.delete("/api/users/:id", (req, res) => {
 });
 
 // Dashboard Statistics & Reports Endpoints
-app.get("/api/reports", (req, res) => {
+app.get("/api/reports", authenticateJWT, requireOwner, (req: any, res) => {
   const orders = database.orders;
   const usersCount = database.users.filter(u => u.role === "CUSTOMER").length;
 
