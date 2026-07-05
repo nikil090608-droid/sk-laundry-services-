@@ -531,8 +531,11 @@ app.post("/api/auth/login", async (req, res) => {
       return res.status(400).json({ error: "Please enter your credentials." });
     }
 
+    const cleanEmailOrMobile = String(email).trim().toLowerCase();
+    const cleanDigits = cleanEmailOrMobile.replace(/[^0-9]/g, "");
+
     // Check if owner login (case-insensitive for owner ID)
-    if (email && email.toLowerCase() === "sklaundry_3375" && password === (database.ownerPassword || "Kalpana@3375")) {
+    if (cleanEmailOrMobile === "sklaundry_3375" && password === (database.ownerPassword || "Kalpana@3375")) {
       const owner = database.users.find(u => u.role === "OWNER") || {
         id: "u-owner",
         name: "SK Laundry Owner",
@@ -547,7 +550,14 @@ app.post("/api/auth/login", async (req, res) => {
       return res.json({ success: true, user: owner, token });
     }
 
-    const customer: any = database.users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.role === "CUSTOMER");
+    const customer: any = database.users.find(u => {
+      if (u.role !== "CUSTOMER") return false;
+      const dbEmail = String(u.email || "").trim().toLowerCase();
+      const dbMobile = String(u.mobile || "").replace(/[^0-9]/g, "");
+      
+      return dbEmail === cleanEmailOrMobile || (cleanDigits.length >= 10 && dbMobile === cleanDigits) || dbMobile === cleanEmailOrMobile;
+    });
+
     if (!customer) {
       return res.status(401).json({ error: "Invalid credentials or customer not registered." });
     }

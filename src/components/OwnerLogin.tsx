@@ -19,11 +19,14 @@ export default function OwnerLogin({ setCurrentUser, setActivePage }: OwnerLogin
     setErrorMsg("");
     setLoading(true);
 
+    const trimmedEmail = email.trim();
+    const trimmedPassword = password.trim();
+
     try {
       const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email: trimmedEmail, password: trimmedPassword })
       });
       const data = await response.json();
       if (response.ok && data.user?.role === "OWNER") {

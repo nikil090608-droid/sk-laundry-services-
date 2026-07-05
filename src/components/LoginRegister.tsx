@@ -36,13 +36,19 @@ export default function LoginRegister({ setCurrentUser, setActivePage }: LoginRe
     setSuccessMsg("");
     setLoading(true);
 
+    const trimmedEmail = email.trim();
+    const trimmedPassword = password.trim();
+    const trimmedName = name.trim();
+    const trimmedMobile = mobile.trim();
+    const trimmedAddress = address.trim();
+
     try {
       if (isLogin) {
         // Standard email login
         const response = await fetch("/api/auth/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password })
+          body: JSON.stringify({ email: trimmedEmail, password: trimmedPassword })
         });
         const data = await response.json();
         if (response.ok) {
@@ -63,7 +69,7 @@ export default function LoginRegister({ setCurrentUser, setActivePage }: LoginRe
         const response = await fetch("/api/auth/register", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name, email, mobile, password, address })
+          body: JSON.stringify({ name: trimmedName, email: trimmedEmail, mobile: trimmedMobile, password: trimmedPassword, address: trimmedAddress })
         });
         const data = await response.json();
         if (response.ok) {
